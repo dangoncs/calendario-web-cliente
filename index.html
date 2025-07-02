@@ -21,50 +21,106 @@
             </ul>
         </nav>
         <main>
-            <!--
-            <section id="calendar">
-                <p>Calendário</p>
-            </section>
-            -->
-            <section id="timeline">
-                <h2>Linha do Tempo</h2>
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <div class="content">
-                            <div class="date">Hoje</div>
-                            <div>Evento 1</div>
+            <div class="main-container">
+                <section id="timeline">
+                    <h2>Linha do Tempo</h2>
+                    <div class="timeline">
+                        
                         </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="content">
-                            <div class="date">Amanhã</div>
-                            <div>Evento 2</div>
+                </section>
+
+                <aside id="event-form-container">
+                    <h3>Adicionar Novo Evento</h3>
+                    <form id="add-event-form">
+                        <div class="form-group">
+                            <label for="event-name">Nome do Evento:</label>
+                            <input type="text" id="event-name" name="event-name" required>
                         </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="content">
-                            <div class="date">06/07</div>
-                            <div>Evento 3</div>
+                        <div class="form-group">
+                            <label for="event-date">Data:</label>
+                            <input type="date" id="event-date" name="event-date" required>
                         </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="content">
-                            <div class="date">10/08</div>
-                            <div>Evento 4</div>
+                        <div class="form-group">
+                            <label for="event-time">Horário:</label>
+                            <input type="time" id="event-time" name="event-time" required>
                         </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="content">
-                            <div class="date">01/01/2026</div>
-                            <div>Evento 5</div>
-                        </div>
-                    </div>
-            </section>
+                        <button type="submit">Adicionar Evento</button>
+                    </form>
+                </aside>
+            </div>
         </main>
         <footer>
             <p>footer</p>
             <a href="#">Sobre</a>
         </footer>
-        <script src="" async defer></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+
+                const form = document.getElementById('add-event-form');
+                const timelineContainer = document.querySelector('#timeline .timeline');
+
+                // array que guarda todos os eventos
+                let events = [
+
+                ];
+
+                // função que atualiza a timeline (chamada sempre que um evento é adicionado)
+                function renderTimeline() {
+                    // Limpa a timeline
+                    timelineContainer.innerHTML = '';
+
+                    // Ordena os eventos: do mais próximo (menor data) para o mais distante (maior data)
+                    events.sort((a, b) => a.datetime - b.datetime);
+
+                    //Cria e adiciona cada item do evento no HTML
+                    events.forEach(event => {
+
+                        //Formata a data e a hora para exibição
+                        const day = String(event.datetime.getDate()).padStart(2, '0');
+                        const month = String(event.datetime.getMonth() + 1).padStart(2, '0'); 
+                        const year = event.datetime.getFullYear();
+                        const hours = String(event.datetime.getHours()).padStart(2, '0');
+                        const minutes = String(event.datetime.getMinutes()).padStart(2, '0');
+                        
+                        const formattedDate = `${day}/${month}/${year}`;
+                        const formattedTime = `${hours}:${minutes}`;
+
+                        const timelineItem = document.createElement('div');
+                        timelineItem.classList.add('timeline-item');
+                        
+                        timelineItem.innerHTML = `
+                            <div class="content">
+                                <div class="date">${formattedDate} - ${formattedTime}</div>
+                                <div>${event.name}</div>
+                            </div>
+                        `;
+                        timelineContainer.appendChild(timelineItem);
+                    });
+                }
+
+                // evento do formulario para adicionar um novo evento
+                form.addEventListener('submit', function(event) {
+                    event.preventDefault();
+
+                    const eventName = document.getElementById('event-name').value;
+                    const eventDate = document.getElementById('event-date').value;
+                    const eventTime = document.getElementById('event-time').value;
+
+                    const newEventDatetime = new Date(`${eventDate}T${eventTime}`);
+
+                    events.push({
+                        name: eventName,
+                        datetime: newEventDatetime
+                    });
+
+                    // atualiza a timeline
+                    renderTimeline();
+
+                    form.reset();
+                });
+
+                renderTimeline();
+            });
+        </script>
     </body>
 </html>

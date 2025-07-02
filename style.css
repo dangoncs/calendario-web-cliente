@@ -149,3 +149,71 @@ footer {
     bottom: 0;
     width: 100%;
 }
+
+/* --- ESTILOS PARA O LAYOUT PRINCIPAL E FORMULÁRIO --- */
+
+/* Cria o container de duas colunas */
+.main-container {
+    display: flex;
+    gap: 20px; /* Espaçamento entre a timeline e o formulário */
+}
+
+/* Ajusta a timeline para ocupar o espaço disponível */
+#timeline {
+    flex-grow: 1; /* Permite que a timeline cresça */
+}
+
+/* Remove a largura fixa e a centralização da timeline */
+#timeline .timeline {
+    width: 100%; /* Ocupa toda a largura do seu container pai */
+    margin: 0; /* Remove a margem automática */
+}
+
+/* Estiliza o container do formulário */
+#event-form-container {
+    width: 300px; /* Largura fixa para o formulário */
+    background-color: white;
+    padding: 15px 20px;
+    border-radius: 5px;
+    height: fit-content; /* A altura se ajusta ao conteúdo */
+}
+
+#event-form-container h3 {
+    margin-top: 0;
+    text-align: center;
+}
+
+/* Estiliza os grupos do formulário (label + input) */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box; /* Garante que o padding não aumente a largura */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Estiliza o botão de submissão */
+#event-form-container button {
+    width: 100%;
+    padding: 10px;
+    background-color: #2196F3; /* Cor azul dos pontos da timeline */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#event-form-container button:hover {
+    background-color: #1a78c2;
+}
