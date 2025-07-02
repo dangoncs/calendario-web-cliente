@@ -26,6 +26,7 @@ class GerenciadorEventos {
 
     removerEvento(id) {
         this.eventos = this.eventos.filter(evento => evento.id !== id);
+        this.salvarNoLocalStorage(); // para salvar a remoção
     }
 
     obterDoLocalStorage() {
@@ -40,16 +41,12 @@ class GerenciadorEventos {
     salvarNoLocalStorage() {
         localStorage.setItem("eventos", JSON.stringify(this.eventos));
     }
-
-    listarEventos() {
-        return this.eventos;
-    }
 }
 
-const gerenciador = new GerenciadorEventos();
-gerenciador.obterDoLocalStorage();
-
 document.addEventListener('DOMContentLoaded', function () {
+    const gerenciador = new GerenciadorEventos();
+    gerenciador.obterDoLocalStorage();
+
     const form = document.getElementById('add-event-form');
     const timelineContainer = document.querySelector('#timeline .timeline');
 
@@ -77,6 +74,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             timelineItem.innerHTML = `
                             <div class="content">
+                                <button class="delete-btn" data-id="${event.id}" title="Remover evento">&times;</button>
                                 <div class="date">${formattedDate} - ${formattedTime}</div>
                                 <div>${event.nome}</div>
                             </div>
@@ -97,6 +95,17 @@ document.addEventListener('DOMContentLoaded', function () {
 
         renderTimeline(); // atualiza a timeline
         form.reset();
+    });
+
+    // clique em um evento da timeline
+    timelineContainer.addEventListener('click', function(event) {
+        // exclui o evento se o elemento clicado for o botão de deletar
+        if (event.target.classList.contains('delete-btn')) {
+            const eventId = Number(event.target.getAttribute('data-id'));
+
+            gerenciador.removerEvento(eventId);
+            event.target.closest('.timeline-item').remove(); // remover também o item do DOM
+        }
     });
 
     renderTimeline();
