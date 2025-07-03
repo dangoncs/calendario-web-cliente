@@ -1,8 +1,17 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
     margin: 0;
     padding: 0;
+    color: #333;
     background-color: #f4f4f4;
+}
+
+h1,
+h2,
+h3 {
+    margin-top: 0;
+    text-align: center;
+    color: #2c3e50;
 }
 
 header {
@@ -13,12 +22,9 @@ header {
     color: black;
     background-color: #f8cb11;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
-}
-
-header div {
-    display: flex;
-    align-items: center;
-    gap: 15px;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 header .logo-utfpr {
@@ -34,52 +40,37 @@ header img {
 
 header h1 {
     font-size: 30px;
+    color: #000;
+    font-weight: normal;
+    margin-bottom: 5px;
 }
 
-nav {
-    background-color: #333;
-    overflow: hidden;
-}
-
-nav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-}
-
-nav ul li {
-    float: left;
-}
-
-nav ul li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-
-nav ul li a:hover {
-    background-color: #ddd;
-    color: black;
-}
-
-main {
+#timeline,
+#event-form-container {
+    background-color: white;
+    border-radius: 8px;
+    height: fit-content;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     padding: 20px;
 }
 
-section {
-    margin-bottom: 20px;
-    background-color: white;
-    padding: 15px;
-    border-radius: 5px;
+.main-container {
+    display: flex;
+    gap: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+#timeline {
+    flex-grow: 1;
+    margin: 0 auto;
+    padding: 20px 0;
+    width: 100%;
 }
 
 #timeline .timeline {
     position: relative;
-    margin: 0 auto;
-    padding: 20px 0;
-    width: 600px;
 }
 
 #timeline .timeline::before {
@@ -89,7 +80,7 @@ section {
     top: 0;
     bottom: 0;
     width: 4px;
-    background: #ccc;
+    background: #2c3e50;
     transform: translateX(-50%);
 }
 
@@ -102,7 +93,6 @@ section {
 
 #timeline .timeline-item:nth-child(odd) {
     left: 0;
-    text-align: right;
 }
 
 #timeline .timeline-item:nth-child(even) {
@@ -115,10 +105,11 @@ section {
     top: 20px;
     width: 15px;
     height: 15px;
-    background: #2196F3;
+    background: #f8cb11;
     border-radius: 50%;
     z-index: 1;
-    border: 3px solid white;
+    border: 3px solid #2c3e50;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 #timeline .timeline-item:nth-child(odd)::before {
@@ -130,60 +121,51 @@ section {
 }
 
 #timeline .content {
+    position: relative;
     padding: 15px;
     background: #f0f0f0;
     border-radius: 6px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 #timeline .date {
+    font-size: 1em;
     font-weight: bold;
-    margin-bottom: 5px;
+    color: #2c3e50;
+    margin-bottom: 8px;
+    overflow-wrap: break-word;
 }
 
-footer {
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding: 10px 0;
-    position: relative;
-    bottom: 0;
-    width: 100%;
+#timeline .event-name {
+    font-size: 1.2em;
+    color: #2c3e50;
+    margin-bottom: 10px;
+    overflow-wrap: break-word;
 }
 
-/* --- ESTILOS PARA O LAYOUT PRINCIPAL E FORMULÁRIO --- */
-
-/* Cria o container de duas colunas */
-.main-container {
-    display: flex;
-    gap: 20px; /* Espaçamento entre a timeline e o formulário */
+#timeline .delete-btn {
+    position: absolute;
+    top: 5px;
+    right: 8px;
+    color: #e74c3c;
+    background: none;
+    border: none;
+    font-size: 1.5em;
+    cursor: pointer;
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
 }
 
-/* Ajusta a timeline para ocupar o espaço disponível */
-#timeline {
-    flex-grow: 1; /* Permite que a timeline cresça */
+#timeline .delete-btn:hover {
+    opacity: 1;
 }
 
-/* Remove a largura fixa e a centralização da timeline */
-#timeline .timeline {
-    width: 100%; /* Ocupa toda a largura do seu container pai */
-    margin: 0; /* Remove a margem automática */
-}
-
-/* Estiliza o container do formulário */
 #event-form-container {
-    width: 300px; /* Largura fixa para o formulário */
-    background-color: white;
-    padding: 15px 20px;
-    border-radius: 5px;
-    height: fit-content; /* A altura se ajusta ao conteúdo */
+    width: 300px;
+    padding: 20px;
+    margin-bottom: 40px;
 }
 
-#event-form-container h3 {
-    margin-top: 0;
-    text-align: center;
-}
-
-/* Estiliza os grupos do formulário (label + input) */
 .form-group {
     margin-bottom: 15px;
 }
@@ -196,24 +178,24 @@ footer {
 .form-group input {
     width: 100%;
     padding: 8px;
-    box-sizing: border-box; /* Garante que o padding não aumente a largura */
+    box-sizing: border-box;
     border: 1px solid #ccc;
     border-radius: 4px;
 }
 
-/* Estiliza o botão de submissão */
-#event-form-container button {
+button[type="submit"] {
+    display: block;
     width: 100%;
-    padding: 10px;
-    background-color: #2196F3; /* Cor azul dos pontos da timeline */
-    color: white;
+    padding: 12px;
+    background-color: #f8cb11;
+    color: black;
     border: none;
-    border-radius: 5px;
+    border-radius: 4px;
     font-size: 16px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s ease;
 }
 
-#event-form-container button:hover {
-    background-color: #1a78c2;
+button[type="submit"]:hover {
+    background-color: #e0b10d;
 }
