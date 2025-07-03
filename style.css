@@ -199,3 +199,36 @@ button[type="submit"] {
 button[type="submit"]:hover {
     background-color: #e0b10d;
 }
+
+/* RESPONSIVIDADE */
+@media (max-width: 800px) {
+
+    .main-container {
+        flex-direction: column;
+        padding: 10px; 
+    }
+
+    #event-form-container {
+        width: 93%;  
+        order: -1;    /* move o formulário para o topo */
+        margin-bottom: 20px;
+    }
+
+    /* faz com que todos os itens da linha do tempo fiquem à direita */
+    #timeline .timeline::before {
+        left: 20px; 
+    }
+
+    #timeline .timeline-item,
+    #timeline .timeline-item:nth-child(even) {
+        width: 100%;
+        left: 0;
+        padding-left: 50px; 
+        padding-right: 10px;
+    }
+
+    #timeline .timeline-item::before,
+    #timeline .timeline-item:nth-child(even)::before {
+        left: 12px;
+    }
+}
