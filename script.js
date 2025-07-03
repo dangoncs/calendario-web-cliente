@@ -91,6 +91,15 @@ document.addEventListener('DOMContentLoaded', function () {
         const eventDate = document.getElementById('event-date').value;
         const eventTime = document.getElementById('event-time').value;
 
+        //confere a data e hora do evento
+        const agora = new Date(); 
+        const dataDoEvento = new Date(`${eventDate}T${eventTime}`);
+
+        if (dataDoEvento < agora) {
+            alert('Erro: Não é possível adicionar eventos em datas ou horários passados.');
+            return; // Interrompe a execução da função se a data for inválida
+        }
+
         gerenciador.adicionarEvento(eventName, eventDate, eventTime);
 
         renderTimeline(); // atualiza a timeline
