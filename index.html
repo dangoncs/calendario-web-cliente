@@ -1,58 +1,48 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Calendário</title>
-        <meta name="description" content="Trabalho da disciplina Desenvolvimento Web Cliente">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body>
-        <header>
-            <img src="assets/IdentidadeVisualUTFPR.png" class="logo-utfpr" alt="Logo UTFPR">
-            <h1>|</h1>
-            <img src="assets/calendar.png" alt="Logo Calendario">
-        </header>
-        <nav>
-            <ul>
-                <li><a href="#calendar">Calendário</a></li>
-                <li><a href="#timeline">Linha do Tempo</a></li>
-            </ul>
-        </nav>
-        <main>
-            <div class="main-container">
-                <section id="timeline">
-                    <h2>Linha do Tempo</h2>
-                    <div class="timeline">
-                        
-                        </div>
-                </section>
 
-                <aside id="event-form-container">
-                    <h3>Adicionar Novo Evento</h3>
-                    <form id="add-event-form">
-                        <div class="form-group">
-                            <label for="event-name">Nome do Evento:</label>
-                            <input type="text" id="event-name" name="event-name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="event-date">Data:</label>
-                            <input type="date" id="event-date" name="event-date" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="event-time">Horário:</label>
-                            <input type="time" id="event-time" name="event-time" required>
-                        </div>
-                        <button type="submit">Adicionar Evento</button>
-                    </form>
-                </aside>
-            </div>
-        </main>
-        <footer>
-            <p>footer</p>
-            <a href="#">Sobre</a>
-        </footer>
-        <script src="script.js"></script>
-    </body>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Linha do Tempo de Eventos</title>
+    <meta name="description" content="Trabalho da disciplina Desenvolvimento Web Cliente">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <img src="assets/IdentidadeVisualUTFPR.png" class="logo-utfpr" alt="Logo UTFPR">
+        <h1>|</h1>
+        <img src="assets/calendar.png" alt="Logo Calendario">
+    </header>
+    <main>
+        <div class="main-container">
+            <section id="timeline">
+                <h2>Próximos Eventos</h2>
+                <div class="timeline"></div>
+            </section>
+            <aside id="event-form-container">
+                <h3>Adicionar Novo Evento</h3>
+                <form id="add-event-form">
+                    <div class="form-group">
+                        <label for="event-name">Nome do Evento:</label>
+                        <input type="text" id="event-name" name="event-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="event-date">Data:</label>
+                        <input type="date" id="event-date" name="event-date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="event-time">Horário:</label>
+                        <input type="time" id="event-time" name="event-time" required>
+                    </div>
+                    <button type="submit">Adicionar Evento</button>
+                </form>
+            </aside>
+        </div>
+    </main>
+    <script src="script.js"></script>
+</body>
+
 </html>

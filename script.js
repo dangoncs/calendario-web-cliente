@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', function () {
                             <div class="content">
                                 <button class="delete-btn" data-id="${event.id}" title="Remover evento">&times;</button>
                                 <div class="date">${formattedDate} - ${formattedTime}</div>
-                                <div>${event.nome}</div>
+                                <div class="event-name">${event.nome}</div>
                             </div>
                         `;
             timelineContainer.appendChild(timelineItem);
